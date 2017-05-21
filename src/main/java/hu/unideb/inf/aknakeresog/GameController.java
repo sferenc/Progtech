@@ -57,6 +57,20 @@ public class GameController implements Initializable {
         exit();
     }
     
+    @FXML
+    public void handlembHelp(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/HelpScene.fxml"));
+	Parent root = fxmlLoader.load();
+        
+        Stage gm = new Stage();
+        gm.setTitle("Aknakereső 1.0");
+        gm.initStyle(StageStyle.DECORATED);
+        gm.initModality(Modality.APPLICATION_MODAL);
+        Scene scene = new Scene(root);
+        gm.setScene(scene);
+        gm.show(); 
+    }
+    
     public void exit(){
         Stage stage = (Stage) grPane.getScene().getWindow();
         stage.close();

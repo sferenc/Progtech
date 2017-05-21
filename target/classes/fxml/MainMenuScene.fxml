@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.MainController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.MainController">
    <children>
-      <Label layoutX="164.0" layoutY="41.0" text="Aknakereső" textAlignment="CENTER" textFill="#1a00ff">
+      <Label layoutX="164.0" layoutY="31.0" text="Aknakereső" textAlignment="CENTER" textFill="#1a00ff">
          <font>
             <Font size="50.0" />
          </font>
@@ -17,17 +17,22 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnNewGame" layoutX="223.0" layoutY="155.0" mnemonicParsing="false" onAction="#handlebtnNewGame" prefHeight="60.0" prefWidth="155.0" text="Új játék">
+      <Button fx:id="btnNewGame" layoutX="223.0" layoutY="161.0" mnemonicParsing="false" onAction="#handlebtnNewGame" prefHeight="60.0" prefWidth="165.0" text="Új játék">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnExit" layoutX="224.0" layoutY="301.0" mnemonicParsing="false" onAction="#handlebtnExit" prefHeight="60.0" prefWidth="155.0" text="Kilépés">
+      <Button fx:id="btnExit" layoutX="223.0" layoutY="394.0" mnemonicParsing="false" onAction="#handlebtnExit" prefHeight="60.0" prefWidth="165.0" text="Kilépés">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnSettings" layoutX="224.0" layoutY="227.0" mnemonicParsing="false" onAction="#handlebtnSettings" prefHeight="60.0" prefWidth="155.0" text="Beállítások">
+      <Button fx:id="btnSettings" layoutX="223.0" layoutY="238.0" mnemonicParsing="false" onAction="#handlebtnSettings" prefHeight="60.0" prefWidth="165.0" text="Beállítások">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnHighScore" layoutX="223.0" layoutY="315.0" mnemonicParsing="false" onAction="#handlebtnHighScore" prefHeight="60.0" prefWidth="165.0" text="Eredmények">
          <font>
             <Font size="24.0" />
          </font>

@@ -74,7 +74,7 @@
           </Menu>
           <Menu id="mbHelp" mnemonicParsing="false" text="Segítség">
             <items>
-              <MenuItem mnemonicParsing="false" text="Játékszabály" />
+              <MenuItem fx:id="mbHelp" mnemonicParsing="false" onAction="#handlembHelp" text="Játékszabály" />
             </items>
           </Menu>
         </menus>

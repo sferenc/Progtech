@@ -27,10 +27,10 @@ import javafx.stage.StageStyle;
 public class MainController implements Initializable {
     
     @FXML
-    Button btnNewGame;
+    private Button btnNewGame;
     
     @FXML
-    Button btnExit;
+    private Button btnExit;
     
     @FXML
     private void handlebtnNewGame(ActionEvent event) throws IOException{
@@ -50,6 +50,20 @@ public class MainController implements Initializable {
     @FXML
     private void handlebtnSettings() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/SettingsScene.fxml"));
+	Parent root = fxmlLoader.load();
+        
+        Stage gm = new Stage();
+        gm.setTitle("Aknakereső 1.0");
+        gm.initStyle(StageStyle.DECORATED);
+        gm.initModality(Modality.APPLICATION_MODAL);
+        Scene scene = new Scene(root);
+        gm.setScene(scene);
+        gm.show();
+    }
+    
+    @FXML
+    private void handlebtnHighScore() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/HighScoreScene.fxml"));
 	Parent root = fxmlLoader.load();
         
         Stage gm = new Stage();

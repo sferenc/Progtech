@@ -23,36 +23,35 @@ public class SettingsController implements Initializable {
     final ToggleGroup group = new ToggleGroup();    
 
     @FXML
-    Button btnSave;
+    private Button btnSave;
     
     @FXML
-    TextField userName;
+    private TextField userName;
 
     @FXML
-    TextField NumberOfBombs;
+    private TextField NumberOfBombs;
     
     @FXML
-    Label lbWarn;
+    private Label lbWarn;
     
     @FXML
-    Label lbIntervallum;
+    private RadioButton rbtnFirst;
     
     @FXML
-    RadioButton rbtnFirst;
+    private RadioButton rbtnSecond;
     
     @FXML
-    RadioButton rbtnSecond;
+    private RadioButton rbtnThird;
     
     @FXML
-    RadioButton rbtnThird;
-    
-    @FXML
-    RadioButton rbtnFourth;
+    private RadioButton rbtnFourth;
 
-    
     @FXML
     private void handlebtnSave(){
         boolean warn = false;
+        if(group.getSelectedToggle().equals(rbtnFirst)){
+           MainApp.bombs = 25; 
+        }
         if(group.getSelectedToggle().equals(rbtnFourth)){
             String l_bombs = NumberOfBombs.getText();
             
@@ -89,7 +88,7 @@ public class SettingsController implements Initializable {
         }
     }
     
-    public boolean isNumber(String text){
+    private boolean isNumber(String text){
         boolean tmp = true;
         for(int i=0; i<text.length();i++){
             if(!Character.isDigit(text.charAt(i))){
@@ -99,8 +98,8 @@ public class SettingsController implements Initializable {
         return tmp;
     }
     
-  @FXML
-    private void handleButtonAction(ActionEvent event) {
+    @FXML
+    private void handleRbtnAction(ActionEvent event) {
         RadioButton b = (RadioButton) event.getSource();
         
         if(b.getId().equals("rbtnFirst")){
@@ -125,6 +124,7 @@ public class SettingsController implements Initializable {
         NumberOfBombs.setDisable(true);
         rbtnFirst.setToggleGroup(group);
             rbtnFirst.setSelected(true);
+            
         rbtnSecond.setToggleGroup(group);
         rbtnThird.setToggleGroup(group);
         rbtnFourth.setToggleGroup(group);

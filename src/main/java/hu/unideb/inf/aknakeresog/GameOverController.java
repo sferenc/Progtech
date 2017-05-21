@@ -25,19 +25,19 @@ import javafx.stage.Stage;
  */
 public class GameOverController implements Initializable {
 
-    GameController gameController = new GameController();
+    private GameController gameController = new GameController();
     
     @FXML
-    Button btnGoMenu;
+    private Button btnGoMenu;
     
     @FXML
-    Button btnNewGame;
+    private Button btnNewGame;
     
     @FXML
-    Label lbWonOrLost;
+   private Label lbWonOrLost;
    
     @FXML
-    void handlebtnNewGame() throws IOException {
+    private void handlebtnNewGame() throws IOException {
         gameController.newGame();
         
         Stage stage = (Stage) btnNewGame.getScene().getWindow();
@@ -45,7 +45,7 @@ public class GameOverController implements Initializable {
     }
     
     @FXML
-    void handlebtnGoMenu(ActionEvent event) throws IOException{
+    private void handlebtnGoMenu(ActionEvent event) throws IOException{
         gameController.exit();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenuScene.fxml"));
         

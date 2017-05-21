@@ -28,9 +28,9 @@
       <TextField fx:id="NumberOfBombs" layoutX="235.0" layoutY="93.0" prefHeight="25.0" prefWidth="79.0" />
       <Label fx:id="lbWarn" layoutX="42.0" layoutY="123.0" textFill="RED" />
       <Label fx:id="lbIntervallum" layoutX="236.0" layoutY="79.0" text="[1-200]" />
-      <RadioButton fx:id="rbtnFirst" layoutX="42.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleButtonAction" text="25 bomb" />
-      <RadioButton fx:id="rbtnThird" layoutX="276.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleButtonAction" text="100 bomb" />
-      <RadioButton fx:id="rbtnSecond" layoutX="158.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleButtonAction" text="50 bomb" />
-      <RadioButton fx:id="rbtnFourth" layoutX="327.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleButtonAction" />
+      <RadioButton fx:id="rbtnFirst" layoutX="42.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleRbtnAction" text="25 bomb" />
+      <RadioButton fx:id="rbtnThird" layoutX="276.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleRbtnAction" text="100 bomb" />
+      <RadioButton fx:id="rbtnSecond" layoutX="158.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleRbtnAction" text="50 bomb" />
+      <RadioButton fx:id="rbtnFourth" layoutX="327.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleRbtnAction" />
    </children>
 </AnchorPane>
