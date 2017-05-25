@@ -30,11 +30,11 @@ public class TableController{
     private Image m_image7 = new Image("icons/number7.png");
     private Image m_image8 = new Image("icons/number8.png");
     
-    private int m_flags;
+    private int m_flags = 0; // kezdetben egy zálszónk sincs
     
     public void setFlag(int _row, int _col){
         if(m_imageViews.get(_row).get(_col).isVisible() == false &&
-           (m_TableModel.getBombs()-m_flags) > 0){
+           (MainApp.bombs - m_flags) > 0){ 
             m_imageViews.get(_row).get(_col).setImage(m_imageRedFlag);
             m_imageViews.get(_row).get(_col).setVisible(true);
             m_flags++;
@@ -79,13 +79,23 @@ public class TableController{
             }
         }
     }
-    
-    public int getNotFoundBombs(){
-        return m_TableModel.getBombs()-m_flags;
+    public int getFlags(){ // flagek száma
+        return m_flags;
+    }
+    public int getFoundBombs(){ // megtalált bombák száma
+        int l_bombs = 0;
+        for(int l_row = 0; l_row <=19; l_row++){
+            for(int l_col=0; l_col <=19; l_col++){
+                if(this.m_imageViews.get(l_row).get(l_col).getImage().equals(m_imageBomb)){
+                    l_bombs++;
+                }
+            }
+        }
+        return MainApp.bombs - l_bombs;
     }
     
-    public TableController(GridPane _gp, int _bombs) {
-        m_TableModel = new TableModel(_bombs);
+    public TableController(GridPane _gp) {
+        m_TableModel = new TableModel();
         this.m_imageViews = new ArrayList<>();
   
         int l_row,l_col;
@@ -145,10 +155,6 @@ public class TableController{
         }
     }
     
-    public TableController(GridPane _gp) {
-        this(_gp,20);
-    }
-    
     public boolean isBomb(int _row, int _col){
         if(m_imageViews.get(_row).get(_col).getImage().equals(m_imageBomb)){    
             m_imageViews.get(_row).get(_col).setVisible(true);
@@ -157,6 +163,13 @@ public class TableController{
             floodFill(_row,_col);
             return false;
             
+        }
+    }
+     public boolean isFlag(int _row, int _col){
+        if(m_imageViews.get(_row).get(_col).getImage().equals(m_imageRedFlag)){    
+            return true;
+        }else{
+            return false;  
         }
     }
     

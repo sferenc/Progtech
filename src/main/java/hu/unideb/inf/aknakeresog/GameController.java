@@ -23,6 +23,7 @@ import javafx.stage.StageStyle;
 public class GameController implements Initializable {
 
     private TableController TC;
+    private int NumberOfBombs;
     private boolean WonOrLost = false;
     
     @FXML
@@ -33,6 +34,11 @@ public class GameController implements Initializable {
     
     @FXML
     private Text tbomb;
+
+    public int getTbomb() { // megtalált bombák száma
+        NumberOfBombs = TC.getFoundBombs();
+        return NumberOfBombs; 
+    }
     
     @FXML
     public void handlembNewGame(ActionEvent event) throws IOException{
@@ -115,10 +121,10 @@ public class GameController implements Initializable {
         }
         if(TC.isGameOver()){
             WonOrLost = true;
+            NumberOfBombs = MainApp.bombs;
             gameOver();
         }
-    if(TC.getNotFoundBombs()>=0)
-        tbomb.setText(Integer.toString(TC.getNotFoundBombs()));
+        tbomb.setText(Integer.toString(MainApp.bombs - TC.getFlags()));
     }
     public boolean isWin(){
         return WonOrLost == true;
@@ -131,8 +137,8 @@ public class GameController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        tbomb.setText(Integer.toString(MainApp.bombs));
-        TC = new TableController(grPane,MainApp.bombs);
+        TC = new TableController(grPane);
+        tbomb.setText(Integer.toString(MainApp.bombs - TC.getFlags()));
         if(TC.isGameOver()){
             try {
                 gameOver();

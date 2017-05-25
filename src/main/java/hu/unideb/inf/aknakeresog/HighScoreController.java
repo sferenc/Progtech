@@ -81,6 +81,7 @@ public class HighScoreController implements Initializable {
         lbIdsColumn.setText(ID);
         lbNamesColumn.setText(hsm.getNamesEasy());
         lbBombsColumn.setText(hsm.getBombsEasy());
+        
     }    
     
 }

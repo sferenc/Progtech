@@ -8,6 +8,8 @@ package hu.unideb.inf.aknakeresog;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javax.xml.transform.TransformerException;
 /**
  * FXML Controller class
  *
@@ -26,6 +29,8 @@ import javafx.stage.Stage;
 public class GameOverController implements Initializable {
 
     private GameController gameController = new GameController();
+//    private DbConnection dbConnect =  new DbConnection();
+    private Dom dom;
     
     @FXML
     private Button btnGoMenu;
@@ -60,18 +65,46 @@ public class GameOverController implements Initializable {
     
     public void param(GameController _gc){
         gameController = _gc;
+        dom = new Dom();
+        
         if(gameController.isWin()){
             lbWonOrLost.setText("Nyertél!");
         }else{
             lbWonOrLost.setText("Vesztettél!");
         }
         lbWonOrLost.setAlignment(Pos.CENTER);
+//        DataBaseUpload();
+        DomUpload();
+    }
+    
+    private void DomUpload(){
+        if(MainApp.bombs == 25){
+            try {
+                dom.DoInsert(MainApp.userName, gameController.getTbomb(), "easy");
+            } catch (TransformerException ex) {
+                Logger.getLogger(GameOverController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(MainApp.bombs == 50){
+            try {
+                dom.DoInsert(MainApp.userName, gameController.getTbomb(), "medium");
+            } catch (TransformerException ex) {
+                Logger.getLogger(GameOverController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(MainApp.bombs == 100){
+            try {
+                dom.DoInsert(MainApp.userName, gameController.getTbomb(), "hard");
+            } catch (TransformerException ex) {
+                Logger.getLogger(GameOverController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
-     
+        
+        
     }    
     
 }

@@ -17,14 +17,12 @@ import java.util.Set;
 public class TableModel {
     public ArrayList<ArrayList<Integer>> m_tableCells;
     public ArrayList<Integer> m_bombIndexes;
-    private int m_bombs; //bombák száma
 
-    public TableModel(int _bombs) {
+
+    public TableModel() {
         m_tableCells = new ArrayList<>();
         m_bombIndexes = new ArrayList<>();
-        
-        this.m_bombs = _bombs;
-        
+    
         Random l_rand = new Random();
         Set<Integer> l_set = new HashSet<>();
         int l_row, l_col, l_tmp;
@@ -40,7 +38,7 @@ public class TableModel {
         do{
             l_tmp = l_rand.nextInt(399)+1;   
             l_set.add(l_tmp);     
-        }while(l_set.size()<_bombs);
+        }while(l_set.size()<MainApp.bombs);
         m_bombIndexes = new ArrayList<>(l_set);
         //Be is állitom a bombákat a helyükre
         for (Integer l_temp : m_bombIndexes) {
@@ -115,11 +113,4 @@ public class TableModel {
         }
         return l_numberOfBombs;
     }
-
-    public int getBombs() {
-        return m_bombs;
-    }
-    
-    
-
 }
