@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="301.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.SettingsController">
+<AnchorPane id="AnchorPane" prefHeight="301.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.Controller.SettingsController">
    <children>
       <Label layoutX="41.0" layoutY="25.0" text="Felhasználónév:">
          <font>

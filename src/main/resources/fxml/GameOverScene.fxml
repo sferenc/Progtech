@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="224.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.GameOverController">
+<AnchorPane id="AnchorPane" prefHeight="224.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.Controller.GameOverController">
    <children>
       <Label layoutX="123.0" layoutY="20.0" text="Játék Vége!">
          <font>

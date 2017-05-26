@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.GameController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.aknakeresog.Controller.GameController">
    <children>
       <GridPane fx:id="grPane" gridLinesVisible="true" layoutX="79.0" layoutY="100.0" onMousePressed="#mouseClicked" prefHeight="420.0" prefWidth="420.0" style="-fx-background-color: gray;">
         <columnConstraints>
