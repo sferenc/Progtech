@@ -1,4 +1,4 @@
 /**
  * Ez a package felelős az aknakereső alapvető logikai funkcióiért.
  */
-package Controller;
+package hu.unideb.inf.aknakeresog.Controller;

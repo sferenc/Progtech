@@ -14,9 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HighScoreController implements Initializable {
 
+    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+
+    
     private final ToggleGroup group = new ToggleGroup();
     private final HighScoreModel hsm = new HighScoreModel();
 
@@ -47,6 +52,8 @@ public class HighScoreController implements Initializable {
         RadioButton b = (RadioButton) event.getSource();
         
         if(b.getId().equals("rbtnFirst")){
+            
+            logger.info("25 bombas eredmenytabla betoltese!");
 
             lbNumberOfHS.setText("25");
             lbNamesColumn.setText(hsm.getNamesEasy());
@@ -54,6 +61,8 @@ public class HighScoreController implements Initializable {
         }
         if(b.getId().equals("rbtnSecond")){
       
+            logger.info("50 bombas eredmenytabla betoltese!");
+            
             lbNumberOfHS.setText("50");
             lbNamesColumn.setText(hsm.getNamesMedium());
             lbBombsColumn.setText(hsm.getBombsMedium());
@@ -61,6 +70,8 @@ public class HighScoreController implements Initializable {
         }
         if(b.getId().equals("rbtnThird")){
         
+            logger.info("100 bombas eredmenytabla betoltese!");
+            
             lbNumberOfHS.setText("100");
             lbNamesColumn.setText(hsm.getNamesHard());
             lbBombsColumn.setText(hsm.getBombsHard());
@@ -78,6 +89,8 @@ public class HighScoreController implements Initializable {
         for(int i=10;i>0;i--){
             ID = ID + i + ".\n\n";
         }
+        
+        logger.info("25 bombas eredmenytabla betoltese!");
         
         lbIdsColumn.setText(ID);
         lbNamesColumn.setText(hsm.getNamesEasy());

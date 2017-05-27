@@ -5,7 +5,7 @@
  */
 package hu.unideb.inf.aknakeresog.Model;
 
-import hu.unideb.inf.aknakeresog.View.MainApp;
+import hu.unideb.inf.aknakeresog.Controller.MainApp;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;

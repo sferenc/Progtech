@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * FXML Controller class
@@ -18,6 +20,8 @@ import javafx.scene.control.Label;
  */
 public class HelpController implements Initializable {
 
+    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    
     @FXML
     private Label lbDescription;
     
@@ -57,6 +61,9 @@ public class HelpController implements Initializable {
                 "be a játék, ha felfedtünk minden olyan mezőt, amely alatt nincs  \n" +
                 "akna. A győzelem elérése nem függ attól, hogy hány aknát jelöltünk \n" +
                 "meg zászlóval.";
+        
+        logger.info("Jatekszabalyzat betoltese!");
+        
         lbDescription.setText(tmp);
     }    
     

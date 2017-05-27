@@ -5,7 +5,6 @@
  */
 package hu.unideb.inf.aknakeresog.Controller;
 
-import hu.unideb.inf.aknakeresog.View.MainApp;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,10 +16,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class SettingsController implements Initializable {
 
+    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    
     final ToggleGroup group = new ToggleGroup();    
 
     @FXML
@@ -84,6 +87,7 @@ public class SettingsController implements Initializable {
             MainApp.userName = userName.getText();
         }
         if(!warn){
+            logger.info("Beallitasok mentese!");
             Stage stage = (Stage)(btnSave.getScene().getWindow());
             stage.close();
         }

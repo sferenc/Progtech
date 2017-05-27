@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>Aknakereso</name>
-    <description>Aknakereső nevű játék</description>
+    <description>Az aknakereső egy számítógépes játék, melynek célja a mezőn lévő összes akna megtalálása, illetve azok elkerülése.</description>
 
     <developers>
         <developer>
@@ -35,6 +35,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <mainClass>hu.unideb.inf.aknakeresog.Controller.MainApp</mainClass>
     </properties>
 
     <build>
@@ -45,7 +46,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>8.6.0</version>
                 <configuration>
-                        <mainClass>hu.unideb.inf.aknakeresog.View.MainApp</mainClass>
+                        <mainClass>${mainClass}</mainClass>
                 </configuration>
             </plugin>
             
@@ -119,7 +120,7 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>hu.unideb.inf.aknakeresog.View.MainApp</mainClass>
+                                <mainClass>${mainClass}</mainClass>
                             </manifest>
                         </archive>
                         <descriptorRefs>
@@ -167,7 +168,6 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        
                         <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -184,7 +184,16 @@
                     </execution>
                 </executions>
              </plugin>
-      
+             
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                </configuration>
+            </plugin>
+             
         </plugins>
     </build>
     <dependencies>
@@ -230,11 +239,9 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.7</version>
-                <configuration> 
-                    <executable>java</executable>
+                <configuration>
                     <instrumentation> 
                         <excludes>
-                            <exclude>**/View/**/*</exclude>
                             <exclude>**/Controller/**/*</exclude>
                         </excludes>
                     </instrumentation>
@@ -253,7 +260,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.17</version>
                 <configuration>
-                    <excludes>**/Controller/**/*,**/View/**/*</excludes>
+                    <excludes>**/Controller/**/*</excludes>
                     <configLocation>src/main/resources/config/checkstyle.xml</configLocation>
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>

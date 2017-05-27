@@ -6,7 +6,6 @@
 package hu.unideb.inf.aknakeresog.Controller;
 
 import hu.unideb.inf.aknakeresog.Dao.Dom;
-import hu.unideb.inf.aknakeresog.View.MainApp;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,6 +49,8 @@ public class GameOverController implements Initializable {
     private void handlebtnNewGame() throws IOException {
         gameController.newGame();
         
+        logger.info("Uj jatek kezdodott!");
+        
         Stage stage = (Stage) btnNewGame.getScene().getWindow();
         stage.close();
     }
@@ -58,6 +59,8 @@ public class GameOverController implements Initializable {
     private void handlebtnGoMenu(ActionEvent event) throws IOException{
         gameController.exit();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenuScene.fxml"));
+        
+        logger.info("Ugras a fomenube!");
         
         Scene scene = new Scene(root);        
         
@@ -84,23 +87,26 @@ public class GameOverController implements Initializable {
     private void DomUpload(){
         if(MainApp.bombs == 25){
             try {
+                logger.info("Jatekallas mentese!");
                 dom.DoInsert(MainApp.userName, gameController.getTbomb(), "easy");
             } catch (TransformerException ex) {
-                ex.printStackTrace();
+                logger.error(ex.getMessage());
             }
         }
         if(MainApp.bombs == 50){
             try {
+                logger.info("Jatekallas mentese!");                
                 dom.DoInsert(MainApp.userName, gameController.getTbomb(), "medium");
             } catch (TransformerException ex) {
-                ex.printStackTrace();
+                logger.error(ex.getMessage());
             }
         }
         if(MainApp.bombs == 100){
             try {
+                logger.info("Jatekallas mentese!");                
                 dom.DoInsert(MainApp.userName, gameController.getTbomb(), "hard");
             } catch (TransformerException ex) {
-                ex.printStackTrace();
+                logger.error(ex.getMessage());
             }
         }
     }

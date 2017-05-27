@@ -5,12 +5,11 @@
  */
 package hu.unideb.inf.aknakeresog.Dao;
 
+import hu.unideb.inf.aknakeresog.Controller.MainController;
 import hu.unideb.inf.aknakeresog.Model.Player;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,6 +19,9 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,6 +29,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Dom {
+    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+
     private DocumentBuilderFactory dbFactory;
     private DocumentBuilder dBuilder;
     private File highScoreFile;
@@ -50,11 +54,11 @@ public class Dom {
             
             doc = dBuilder.parse(highScoreFile);
         } catch (SAXException ex) {
-            Logger.getLogger(Dom.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(Dom.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Dom.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         }
         
         
@@ -81,11 +85,12 @@ public class Dom {
             StreamResult result = new StreamResult(highScoreFile);
 
             transformer.transform(source, result);
+            logger.info("xml fajl letrehozasa!");
 
         } catch (TransformerConfigurationException ex) {
-            Logger.getLogger(Dom.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         } catch (TransformerException ex) {
-            Logger.getLogger(Dom.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex.getMessage());
         }
     }
     
@@ -107,10 +112,13 @@ public class Dom {
                 tmp.setBombs(Integer.parseInt(player.getElementsByTagName("bombs").item(0).getTextContent()));
                 statics.add(tmp);
             }
-        bestTen();
+            logger.info("Statisztikak betoltese!");
+            bestTen();
+        
     }
    
     private void bestTen(){
+        logger.info("Statisztikak rendezese!");
         int iteration, index=0;
         if(statics.size()>=10){
             iteration = 10;

@@ -1,7 +1,5 @@
 package hu.unideb.inf.aknakeresog.Controller;
 
-import hu.unideb.inf.aknakeresog.View.MainApp;
-import hu.unideb.inf.aknakeresog.View.TableController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,9 +19,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.slf4j.LoggerFactory;
 
 
 public class GameController implements Initializable {
+
+    private static org.slf4j.Logger logger = (org.slf4j.Logger) LoggerFactory.getLogger(MainController.class);
 
     private TableController TC;
     private int NumberOfBombs;
@@ -53,6 +54,8 @@ public class GameController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenuScene.fxml"));
         
         Scene scene = new Scene(root);        
+        
+        logger.info("Ugras a Fomenube!");
     
 	Stage stage = (Stage) grPane.getScene().getWindow();
 		
@@ -70,6 +73,8 @@ public class GameController implements Initializable {
     public void handlembHelp(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/HelpScene.fxml"));
 	Parent root = fxmlLoader.load();
+        
+        logger.info("Ugras a jatekszabalyokhoz!");
         
         Stage gm = new Stage();
         gm.setTitle("Aknakereső 1.0");
@@ -90,6 +95,9 @@ public class GameController implements Initializable {
         destroy();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/GameScene.fxml"));
         Scene scene = new Scene(root);
+        
+        logger.info("A jatek elkezdodott!");
+        
         Stage stage = (Stage) grPane.getScene().getWindow();
         stage.setScene(scene);
         stage.show(); 
@@ -116,13 +124,17 @@ public class GameController implements Initializable {
         int grCol = (int) ((event.getSceneY() - grPane.getLayoutY() - grPane.getPadding().getTop()) / 20);
             
         if(event.isPrimaryButtonDown()){
-           if(TC.isBomb(grRow,grCol))
-            gameOver();
+            logger.info("A jatekos teruletet nyitott");
+            if(TC.isBomb(grRow,grCol)){
+                logger.info("Jatek Vege!");
+                gameOver();
+            }
         }
         if(event.isSecondaryButtonDown()){
             TC.setFlag(grRow, grCol);
         }
         if(TC.isGameOver()){
+            logger.info("A jatekos megnyerte a jatekot");
             WonOrLost = true;
             NumberOfBombs = MainApp.bombs;
             gameOver();
@@ -146,7 +158,8 @@ public class GameController implements Initializable {
             try {
                 gameOver();
             } catch (IOException ex) {
-                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                logger.error("Jatek vege!");
+                logger.error(ex.getMessage());
             }
         }
         lbUserName.setText(MainApp.userName);

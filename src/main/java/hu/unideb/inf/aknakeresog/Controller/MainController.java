@@ -43,7 +43,7 @@ public class MainController implements Initializable {
         
         Scene scene = new Scene(root);        
         
-        logger.info("The game is started!");
+        logger.info("Uj jatek kezdodott!");
 	
 	Stage stage = (Stage)(btnNewGame.getScene().getWindow());
 		
@@ -56,6 +56,8 @@ public class MainController implements Initializable {
     private void handlebtnSettings() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/SettingsScene.fxml"));
 	Parent root = fxmlLoader.load();
+        
+        logger.info("Belepes a beallitasokba!");
         
         Stage gm = new Stage();
         gm.setTitle("Aknakereső 1.0");
@@ -70,6 +72,8 @@ public class MainController implements Initializable {
     private void handlebtnHighScore() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/HighScoreScene.fxml"));
 	Parent root = fxmlLoader.load();
+        
+        logger.info("Belepes az eredmenyek tablaba!");
         
         Stage gm = new Stage();
         gm.setTitle("Aknakereső 1.0");

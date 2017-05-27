@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package hu.unideb.inf.aknakeresog.View;
+package hu.unideb.inf.aknakeresog.Controller;
 
 import hu.unideb.inf.aknakeresog.Model.TableModel;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Fricy
  */
 public class TableController{
+    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    
     private TableModel m_TableModel;
     private ArrayList<ArrayList<ImageView>> m_imageViews;
     
@@ -38,10 +37,12 @@ public class TableController{
            (MainApp.bombs - m_flags) > 0){ 
             m_imageViews.get(_row).get(_col).setImage(m_imageRedFlag);
             m_imageViews.get(_row).get(_col).setVisible(true);
+            logger.info("A jatekos zaszlot helyezett el a mezon!");
             m_flags++;
         }else{ 
            if(m_imageViews.get(_row).get(_col).getImage().equals(m_imageRedFlag)){
             m_imageViews.get(_row).get(_col).setVisible(false);
+            logger.info("A jatekos levette a zaszlot a mezorol!");
             m_flags--;
             switch(m_TableModel.getTableCells().get(_row).get(_col)){
                     case 0:
@@ -100,7 +101,6 @@ public class TableController{
         this.m_imageViews = new ArrayList<>();
   
         int l_row,l_col;
-        
         //Mindent feltöltök egy fehér iconnal
         for(l_row = 0; l_row < 20; l_row++){
             ArrayList<ImageView> l_imageViews = new ArrayList<>();
@@ -110,6 +110,7 @@ public class TableController{
             }
             m_imageViews.add(l_imageViews);
         }
+        logger.info("A jatektabla feltoltese bombakkal!");
         //Be is állitom a bombákat a helyükre
         for (Integer l_temp : m_TableModel.getBombIndexes()) {
             l_row = l_temp/20;
