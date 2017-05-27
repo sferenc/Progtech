@@ -8,6 +8,10 @@
     <packaging>jar</packaging>
 
     <name>Aknakereso</name>
+    <inceptionYear>2017</inceptionYear>
+    <organization>
+        <name>hu.unideb.inf.aknakeresog</name>
+    </organization>
     <description>Az aknakereső egy számítógépes játék, melynek célja a mezőn lévő összes akna megtalálása, illetve azok elkerülése.</description>
 
     <developers>
@@ -40,6 +44,25 @@
 
     <build>
         <plugins>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.12</version>
+                
+                <executions>
+                    <execution>
+                        <configuration>
+                            <inceptionYear>2017</inceptionYear>
+                            <organizationName>${project.organization.name}</organizationName>
+                        </configuration>
+                        <id>download-licenses</id>
+                        <goals>
+                            <goal>download-licenses</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             
             <plugin>
                 <groupId>com.zenjava</groupId>

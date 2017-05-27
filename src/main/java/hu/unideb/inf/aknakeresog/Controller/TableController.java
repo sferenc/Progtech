@@ -1,6 +1,7 @@
 package hu.unideb.inf.aknakeresog.Controller;
 
 import hu.unideb.inf.aknakeresog.Model.TableModel;
+import java.io.File;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,9 +19,9 @@ public class TableController{
     private TableModel m_TableModel;
     private ArrayList<ArrayList<ImageView>> m_imageViews;
     
-    private Image m_imageBomb = new Image("/icons/bomb.png");
+    private Image m_imageBomb = new Image("icons/bomb.png");
     private Image m_imageRedFlag = new Image("/icons/redFlag.png");
-    private Image m_imageWhite = new Image("icons/white.jpg");
+    private Image m_imageWhite = new Image("/icons/white.jpg");
     private Image m_image1 = new Image("icons/number1.png");
     private Image m_image2 = new Image("icons/number2.png");
     private Image m_image3 = new Image("icons/number3.png");
@@ -31,6 +32,67 @@ public class TableController{
     private Image m_image8 = new Image("icons/number8.png");
     
     private int m_flags = 0; // kezdetben egy zálszónk sincs
+    
+    public TableController(GridPane _gp) {
+    m_TableModel = new TableModel();
+    this.m_imageViews = new ArrayList<>();
+
+    int l_row,l_col;
+    //Mindent feltöltök egy fehér iconnal
+    for(l_row = 0; l_row < 20; l_row++){
+        ArrayList<ImageView> l_imageViews = new ArrayList<>();
+        for(l_col = 0; l_col < 20; l_col++){    
+            l_imageViews.add(reSize(new ImageView(m_imageWhite)));
+            _gp.add(l_imageViews.get(l_col),l_row,l_col); 
+        }
+        m_imageViews.add(l_imageViews);
+    }
+    logger.info("A jatektabla feltoltese bombakkal!");
+    //Be is állitom a bombákat a helyükre
+    for (Integer l_temp : m_TableModel.getBombIndexes()) {
+        l_row = l_temp/20;
+        l_col = (l_temp%20);
+        m_imageViews.get(l_col).get(l_row).setImage(m_imageBomb);
+        m_TableModel.getTableCells().get(l_col).set(l_row, 9);
+    }
+
+    // FELTÖLTÉS
+    for(l_row = 0; l_row <=19; l_row++){
+        for(l_col=0; l_col <=19; l_col++){
+            if(m_TableModel.getTableCells().get(l_row).get(l_col) != 9)
+            switch(m_TableModel.getTableCells().get(l_row).get(l_col)){
+                case 0:
+                    break;
+                case 1:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image1);
+                    break;
+                case 2:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image2);
+                    break;
+                case 3:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image3);
+                    break;
+                case 4:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image4);
+                    break;    
+                case 5:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image5);
+                    break;
+                case 6:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image6);
+                    break;
+                case 7:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image7);
+                    break;
+                case 8:
+                    (m_imageViews.get(l_row)).get(l_col).setImage(m_image8);
+                    break;
+                default:
+                break;
+                }
+            }
+        }
+    }
     
     public void setFlag(int _row, int _col){
         if(m_imageViews.get(_row).get(_col).isVisible() == false &&
@@ -95,68 +157,7 @@ public class TableController{
         }
         return MainApp.bombs - l_bombs;
     }
-    
-    public TableController(GridPane _gp) {
-        m_TableModel = new TableModel();
-        this.m_imageViews = new ArrayList<>();
-  
-        int l_row,l_col;
-        //Mindent feltöltök egy fehér iconnal
-        for(l_row = 0; l_row < 20; l_row++){
-            ArrayList<ImageView> l_imageViews = new ArrayList<>();
-            for(l_col = 0; l_col < 20; l_col++){    
-                l_imageViews.add(reSize(new ImageView(m_imageWhite)));
-                _gp.add(l_imageViews.get(l_col),l_row,l_col); 
-            }
-            m_imageViews.add(l_imageViews);
-        }
-        logger.info("A jatektabla feltoltese bombakkal!");
-        //Be is állitom a bombákat a helyükre
-        for (Integer l_temp : m_TableModel.getBombIndexes()) {
-            l_row = l_temp/20;
-            l_col = (l_temp%20);
-            m_imageViews.get(l_col).get(l_row).setImage(m_imageBomb);
-            m_TableModel.getTableCells().get(l_col).set(l_row, 9);
-        }
-
-        // FELTÖLTÉS
-        for(l_row = 0; l_row <=19; l_row++){
-            for(l_col=0; l_col <=19; l_col++){
-                if(m_TableModel.getTableCells().get(l_row).get(l_col) != 9)
-                switch(m_TableModel.getTableCells().get(l_row).get(l_col)){
-                    case 0:
-                        break;
-                    case 1:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image1);
-                        break;
-                    case 2:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image2);
-                        break;
-                    case 3:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image3);
-                        break;
-                    case 4:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image4);
-                        break;    
-                    case 5:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image5);
-                        break;
-                    case 6:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image6);
-                        break;
-                    case 7:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image7);
-                        break;
-                    case 8:
-                        (m_imageViews.get(l_row)).get(l_col).setImage(m_image8);
-                        break;
-                    default:
-                    break;
-                }
-            }
-        }
-    }
-    
+        
     public boolean isBomb(int _row, int _col){
         if(m_imageViews.get(_row).get(_col).getImage().equals(m_imageBomb)){    
             m_imageViews.get(_row).get(_col).setVisible(true);

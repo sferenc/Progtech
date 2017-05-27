@@ -5,6 +5,7 @@
  */
 package hu.unideb.inf.aknakeresog.Model;
 
+import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +33,20 @@ public class TableModelTest {
             }
         }
         assertEquals(25,counter);
+    }
+    
+    @Test
+    public void TableModelHashTest(){
+        ArrayList<Integer> bombindexes = TM.getBombIndexes();
+        int[] tomb = new int[400];
+        
+        for(int i=0;i<400;i++){
+            tomb[i]=0;
+        }
+        for(int i=0; i<bombindexes.size();i++){
+            tomb[bombindexes.get(i)]++;
+            assertEquals(1,tomb[bombindexes.get(i)]);
+        }    
     }
     
 }
