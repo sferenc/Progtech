@@ -15,17 +15,17 @@ public class TableController{
     private TableModel m_TableModel;
     private ArrayList<ArrayList<ImageView>> m_imageViews;
     
-    private Image m_imageBomb = new Image("icons/bomb.png");
-    private Image m_imageRedFlag = new Image("/icons/redFlag.png");
-    private Image m_imageWhite = new Image("/icons/white.jpg");
-    private Image m_image1 = new Image("icons/number1.png");
-    private Image m_image2 = new Image("icons/number2.png");
-    private Image m_image3 = new Image("icons/number3.png");
-    private Image m_image4 = new Image("icons/number4.png");
-    private Image m_image5 = new Image("icons/number5.png");
-    private Image m_image6 = new Image("icons/number6.png");
-    private Image m_image7 = new Image("icons/number7.png");
-    private Image m_image8 = new Image("icons/number8.png");
+    private Image m_imageBomb = new Image(getClass().getResourceAsStream("/icons/bomb.png"));
+    private Image m_imageRedFlag = new Image(getClass().getResourceAsStream("/icons/redFlag.png"));
+    private Image m_imageWhite = new Image(getClass().getResourceAsStream("/icons/white.jpg"));
+    private Image m_image1 = new Image(getClass().getResourceAsStream("/icons/number1.png"));
+    private Image m_image2 = new Image(getClass().getResourceAsStream("/icons/number2.png"));
+    private Image m_image3 = new Image(getClass().getResourceAsStream("/icons/number3.png"));
+    private Image m_image4 = new Image(getClass().getResourceAsStream("/icons/number4.png"));
+    private Image m_image5 = new Image(getClass().getResourceAsStream("/icons/number5.png"));
+    private Image m_image6 = new Image(getClass().getResourceAsStream("/icons/number6.png"));
+    private Image m_image7 = new Image(getClass().getResourceAsStream("/icons/number7.png"));
+    private Image m_image8 = new Image(getClass().getResourceAsStream("/icons/number8.png"));
     
     private int m_flags = 0; // kezdetben egy zálszónk sincs
     

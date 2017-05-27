@@ -4,6 +4,7 @@ import hu.unideb.inf.aknakeresog.Controller.MainController;
 import hu.unideb.inf.aknakeresog.Model.Player;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -47,7 +48,8 @@ public class Dom {
     /**
      * Az xml fájl.
      */
-    private File highScoreFile;
+     private URL highScoreFile;
+
     
     /**
      * Az xml feldolgozásáért felelős adattag.
@@ -72,17 +74,16 @@ public class Dom {
         statics = new ArrayList<>();
         bestTen = new ArrayList<>();
         
-        highScoreFile = new File("c:/Users/Fricy/Documents/NetBeansProjects/Aknakeresog/src/main/resources/highscore/HS.xml");
-
         try {
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
             
-            if(!highScoreFile.exists()){
+            URL highScoreFile = Dom.class.getClassLoader().getResource("/highscore/HS.xml");
+            if (highScoreFile != null) {
                 DoCreateFile();
             }
             
-            doc = dBuilder.parse(highScoreFile);
+            doc = dBuilder.parse(getClass().getResourceAsStream("/highscore/HS.xml"));
         } catch (SAXException ex) {
             logger.error(ex.getMessage());
         } catch (IOException ex) {
@@ -115,7 +116,7 @@ public class Dom {
 
             transformer = tFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(highScoreFile);
+            StreamResult result = new StreamResult(highScoreFile.getFile());
 
             transformer.transform(source, result);
             logger.info("xml fajl letrehozasa!");
