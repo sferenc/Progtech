@@ -83,7 +83,7 @@ public class Dom {
                 DoCreateFile();
             }
             
-            doc = dBuilder.parse(highScoreFile);
+            doc = dBuilder.parse(getClass().getResourceAsStream("/highscore/HS.xml"));
         } catch (SAXException ex) {
             logger.error(ex.getMessage());
         } catch (IOException ex) {

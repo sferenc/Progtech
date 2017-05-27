@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>hu.unideb.inf</groupId>
-    <artifactId>Aknakeresog</artifactId>
+    <artifactId>aknakeresog</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
@@ -83,17 +83,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.4</version>
-                <configuration>
-                    <outputEncoding>UTF-8</outputEncoding>
-                    <locales>hu</locales>
-                </configuration>
-            </plugin>
-            
+                   
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -185,29 +175,6 @@
                     </additionalClasspathElements>
                 </configuration>
             </plugin>
-            
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/target</outputDirectory>
-                            <resources>          
-                                <resource>
-                                    <directory>src</directory>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>              
-                        </configuration>            
-                    </execution>
-                </executions>
-             </plugin>
              
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -221,7 +188,6 @@
         </plugins>
     </build>
     <dependencies>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -259,13 +225,13 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
+                    <argLine>-XX:-UseSplitVerifier</argLine>
                     <quiet>true</quiet>
                     <instrumentation> 
                         <excludes>
                             <exclude>hu/unideb/inf/aknakeresog/Controller/*.class</exclude>
                         </excludes>
                     </instrumentation>
-                <check/>
                 </configuration>
                 <reportSets>
                     <reportSet>
