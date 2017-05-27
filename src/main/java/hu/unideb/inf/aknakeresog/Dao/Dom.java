@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hu.unideb.inf.aknakeresog.Dao;
 
 import hu.unideb.inf.aknakeresog.Controller.MainController;
@@ -28,16 +23,51 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+    /**
+     * Az osztály xml fájlból tölt be és xml fájba menti az adatokat. 
+     * @author Sándor Ferenc
+     */
 public class Dom {
+    
+    /**
+     * A logolásért felelős adattag.
+     */
     private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
 
+    /**
+     * Az xml feldolgozásáért felelős adattag.
+     */
     private DocumentBuilderFactory dbFactory;
+    
+    /**
+     * Az xml feldolgozásáért felelős adattag.
+     */
     private DocumentBuilder dBuilder;
+    
+    /**
+     * Az xml fájl.
+     */
     private File highScoreFile;
+    
+    /**
+     * Az xml feldolgozásáért felelős adattag.
+     */
     private Document doc;
-    private ArrayList<Player> statics; // ideiglenes tároló
+    
+    /**
+     * Ideiglenes lista, ami tárolja az xml-ből kinyert adatokat.
+     */
+    private ArrayList<Player> statics;
+    
+    /**
+     * Lista, ami tárolja az xml-ből kinyert 10 legjobb eredményt.
+     */
     private ArrayList<Player> bestTen;
 
+    /**
+     * A Dom osztály konstruktora. 
+     * Inicializálja az adattagokat.
+     */
     public Dom(){
         statics = new ArrayList<>();
         bestTen = new ArrayList<>();
@@ -64,6 +94,9 @@ public class Dom {
         
     }
     
+    /**
+     * Abban az esetben ha az xml fájlt nem éri el a konstruktor, ez a metódus létrehozza azt.
+     */
     private void DoCreateFile(){
         
         doc = dBuilder.newDocument();
@@ -94,6 +127,10 @@ public class Dom {
         }
     }
     
+    /**
+     * Lekéri az adott nehézségi szintnek megfelelő eredményeket az xml fájlból.
+     * @param _mode nehézségi szint
+     */
     private void staticsDownload(String _mode){
         statics.clear();
         
@@ -112,13 +149,14 @@ public class Dom {
                 tmp.setBombs(Integer.parseInt(player.getElementsByTagName("bombs").item(0).getTextContent()));
                 statics.add(tmp);
             }
-            logger.info("Statisztikak betoltese!");
             bestTen();
         
     }
-   
+    
+    /**
+     * Az xml fájlból beolvasott adatokat rendezi bombák száma szerint és kiválasztja az első 10 legjobb eredményt.
+     */
     private void bestTen(){
-        logger.info("Statisztikak rendezese!");
         int iteration, index=0;
         if(statics.size()>=10){
             iteration = 10;
@@ -142,29 +180,44 @@ public class Dom {
         }
     }
     
-    public void DoInsert(String _name, int _bombs, String _mode) throws TransformerConfigurationException, TransformerException{
-            Element newPlayer = doc.createElement("player");
-            Element newName = doc.createElement("name");
-                newName.setTextContent(_name);
-            Element newBombs = doc.createElement("bombs");
-                newBombs.setTextContent(String.valueOf(_bombs));
-                
-            newPlayer.appendChild(newName);
-            newPlayer.appendChild(newBombs);
-            
-            
-            Node mode = doc.getElementsByTagName(_mode).item(0);    
-            mode.appendChild(newPlayer);
-            
-            TransformerFactory tFactory = TransformerFactory.newInstance();
-            Transformer transformer = tFactory.newTransformer();
-    
+    /**
+     * Elementi xml fájlba az adott játékállást.
+     * @param _name a játékos neve
+     * @param _bombs a megtalált bombák száma
+     * @param _mode a nehézségi szint
+     */
+    public void DoInsert(String _name, int _bombs, String _mode){
+        Element newPlayer = doc.createElement("player");
+        Element newName = doc.createElement("name");
+            newName.setTextContent(_name);
+        Element newBombs = doc.createElement("bombs");
+            newBombs.setTextContent(String.valueOf(_bombs));
+
+        newPlayer.appendChild(newName);
+        newPlayer.appendChild(newBombs);
+
+
+        Node mode = doc.getElementsByTagName(_mode).item(0);    
+        mode.appendChild(newPlayer);
+
+        TransformerFactory tFactory = TransformerFactory.newInstance();
+        Transformer transformer;
+
+        try {
+            transformer = tFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            
             StreamResult result = new StreamResult(highScoreFile);
             transformer.transform(source, result);
+        } catch (TransformerException ex) {
+            logger.error(ex.getMessage());
+        }
     }
     
+    /**
+     * Visszaadja a 10 legjobb játékost, az adott nehézségi szinttől függően.
+     * @param _mode a nehézségi szint
+     * @return a 10 legjobb játékos
+     */
     public String getNames(String _mode){
         staticsDownload(_mode);
         String l_names = "";
@@ -175,6 +228,11 @@ public class Dom {
             return l_names;
     }
     
+    /**
+     * Visszaadja a 10 legjobb játékos által elért eredményt egy stringben.
+     * @param _mode a nehézségi szint
+     * @return 10 legjobb eredmény
+     */
     public String getBombs(String _mode){
         staticsDownload(_mode);
         String l_bombs = "";

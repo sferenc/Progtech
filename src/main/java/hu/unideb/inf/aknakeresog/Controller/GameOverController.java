@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hu.unideb.inf.aknakeresog.Controller;
 
 import hu.unideb.inf.aknakeresog.Dao.Dom;
@@ -19,14 +14,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javax.xml.transform.TransformerException;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 /**
  * FXML Controller class
  *
- * @author Fricy
+ * @author Sándor Ferenc
  */
 public class GameOverController implements Initializable {
     
@@ -86,35 +80,20 @@ public class GameOverController implements Initializable {
     
     private void DomUpload(){
         if(MainApp.bombs == 25){
-            try {
-                logger.info("Jatekallas mentese!");
-                dom.DoInsert(MainApp.userName, gameController.getTbomb(), "easy");
-            } catch (TransformerException ex) {
-                logger.error(ex.getMessage());
-            }
+            logger.info("Jatekallas mentese!");
+            dom.DoInsert(MainApp.userName, gameController.getTbomb(), "easy");
         }
         if(MainApp.bombs == 50){
-            try {
-                logger.info("Jatekallas mentese!");                
-                dom.DoInsert(MainApp.userName, gameController.getTbomb(), "medium");
-            } catch (TransformerException ex) {
-                logger.error(ex.getMessage());
-            }
+            logger.info("Jatekallas mentese!");
+            dom.DoInsert(MainApp.userName, gameController.getTbomb(), "medium");
         }
         if(MainApp.bombs == 100){
-            try {
-                logger.info("Jatekallas mentese!");                
-                dom.DoInsert(MainApp.userName, gameController.getTbomb(), "hard");
-            } catch (TransformerException ex) {
-                logger.error(ex.getMessage());
-            }
+            logger.info("Jatekallas mentese!");
+            dom.DoInsert(MainApp.userName, gameController.getTbomb(), "hard");
         }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
     }    
-    
 }

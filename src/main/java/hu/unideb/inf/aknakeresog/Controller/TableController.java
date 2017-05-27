@@ -1,7 +1,6 @@
 package hu.unideb.inf.aknakeresog.Controller;
 
 import hu.unideb.inf.aknakeresog.Model.TableModel;
-import java.io.File;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,10 +8,7 @@ import javafx.scene.layout.GridPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Fricy
- */
+
 public class TableController{
     private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
     

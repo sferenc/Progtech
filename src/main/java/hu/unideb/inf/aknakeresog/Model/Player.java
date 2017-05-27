@@ -1,40 +1,70 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hu.unideb.inf.aknakeresog.Model;
 
-/**
- *
- * @author Fricy
- */
+    /**
+     * Egy segéd osztály ami a HS.xml fájlból tárol név és bomba eredmény párost.
+     * @author Sándor Ferenc
+     */
 public class Player {
+    
+    /**
+     * A játékos neve.
+     */
     private String name;
+    
+    /**
+     * A játékos által elért eredmény, megtalált bombák száma.
+     */
     private int bombs;
 
+    /**
+     * A Player osztály konstruktora. 
+     * Alapértékek beállítását végzi.
+     * 
+     */
     public Player() {
         this.name = "";
         this.bombs = -1;
     }
     
-    public Player(String Name, int bombs) {
-        this.name = Name;
-        this.bombs = bombs;
+    /**
+     * A Player osztály konstruktora. 
+     * @param _Name A játékos neve
+     * @param _bombs A játékos által elért bombaszám.
+     * 
+     */
+    public Player(String _Name, int _bombs) {
+        this.name = _Name;
+        this.bombs = _bombs;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * Beállítja a játékos nevét.
+     * @param _name A játékos neve
+     */
+    public void setName(String _name) {
+        this.name = _name;
     }
 
-    public void setBombs(int bombs) {
-        this.bombs = bombs;
+    /**
+     * Beállítja a bombák számát.
+     * @param _bombs A bombák száma
+     */
+    public void setBombs(int _bombs) {
+        this.bombs = _bombs;
     }
 
+    /**
+     * Egy játékosnevet ad vissza.
+     * @return a jatekos neve.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * A játékoshoz tartozó elért bomba számot adja vissza.
+     * @return a bombák száma.
+     */
     public int getBombs() {
         return bombs;
     }

@@ -3,8 +3,6 @@ package hu.unideb.inf.aknakeresog.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,11 +18,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.slf4j.LoggerFactory;
-
+import org.slf4j.Logger;
 
 public class GameController implements Initializable {
 
-    private static org.slf4j.Logger logger = (org.slf4j.Logger) LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
 
     private TableController TC;
     private int NumberOfBombs;

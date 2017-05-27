@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hu.unideb.inf.aknakeresog.Controller;
 
 import java.net.URL;
@@ -16,7 +11,7 @@ import org.slf4j.LoggerFactory;
 /**
  * FXML Controller class
  *
- * @author Fricy
+ * @author Sándor Ferenc
  */
 public class HelpController implements Initializable {
 

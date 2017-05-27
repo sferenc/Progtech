@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hu.unideb.inf.aknakeresog.Model;
 
 import hu.unideb.inf.aknakeresog.Controller.MainApp;
@@ -11,30 +6,57 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-/**
- *
- * @author Fricy
- */
+    /**
+     * A játékmezőt reprezentáló osztály.
+     * @author Sándor Ferenc
+     */
 public class TableModel {
+    
+    /**
+     * A játékmező celláinak értékei. 
+     */
     private ArrayList<ArrayList<Integer>> m_tableCells;
+    
+    /**
+     * A bombák indexei a játékmezőn. 
+     */
     private ArrayList<Integer> m_bombIndexes;
 
+    /**
+     * Visszaadja a játékmező értékeinek tömbjét.
+     * @return a játékmező értékei.
+     */
     public ArrayList<ArrayList<Integer>> getTableCells() {
         return m_tableCells;
     }
 
+    /**
+     * Visszaadja a játékmező azon indexeit, ahol bombák találhatóak.
+     * @return a bombák indexei.
+     */
     public ArrayList<Integer> getBombIndexes() {
         return m_bombIndexes;
     }
 
+    /**
+     * A bombák elhelyezését szabályozza.
+     * @param m_bombIndexes A bombák indexei
+     */
     public void setBombIndexes(ArrayList<Integer> m_bombIndexes) {
         this.m_bombIndexes = m_bombIndexes;
     }
-
+    
+    /**
+     * Beállítja a játékmező értékeit.
+     * @param m_tableCells A játékmező értékei
+     */
     public void setTableCells(ArrayList<ArrayList<Integer>> m_tableCells) {
         this.m_tableCells = m_tableCells;
     }
     
+    /**
+     * Az osztály konstruktora, inicializálja a játékmezőt és beállítja az értékeket rakta.
+     */
     public TableModel() {
         m_tableCells = new ArrayList<>();
         m_bombIndexes = new ArrayList<>();
@@ -101,6 +123,12 @@ public class TableModel {
         }
     } 
     
+    /**
+     * Megvázsgálja a cella szomszédait és beállítja a cella értékét annak függvényében, hogy hány bombát talált a szomszédokon.
+     * @param _row a cella sorindexe
+     * @param _col a cella oszlopindexe
+     * @return szomszédos bombák száma
+     */
     private int checkNeighbors(int _row, int _col){
         int l_numberOfBombs = 0;
         if( _row - 1 >= 0 && _col - 1 >= 0 && this.m_tableCells.get(_row - 1).get(_col - 1) == 9){
