@@ -2,22 +2,16 @@ package hu.unideb.inf.aknakeresog.Dao;
 
 import hu.unideb.inf.aknakeresog.Model.Player;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.net.URISyntaxException;
+import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -30,6 +24,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import sun.misc.IOUtils;
 
     /**
      * Az osztály xml fájlból tölt be és xml fájba menti az adatokat. 
@@ -113,7 +108,6 @@ public class Dom {
                 statics.add(tmp);
             }
             bestTen();
-        
     }
     
     /**
@@ -169,14 +163,11 @@ public class Dom {
         try {
             transformer = tFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            
-            FileOutputStream outputStream = new FileOutputStream(new File("HS.xml"));
-            StreamResult result = new StreamResult(outputStream);
-            
+            URL url = getClass().getResource("/highScore/HS.xml");
+            File file = new File(url.getPath());
+            StreamResult result = new StreamResult(file);
             transformer.transform(source, result);
         } catch (TransformerException ex) {
-            logger.error(ex.getMessage());
-        } catch (FileNotFoundException ex){
             logger.error(ex.getMessage());
         }
     }
