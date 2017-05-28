@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 
 public class TableController{
-    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(TableController.class);
     
     private TableModel m_TableModel;
     private ArrayList<ArrayList<ImageView>> m_imageViews;
@@ -159,6 +159,7 @@ public class TableController{
             m_imageViews.get(_row).get(_col).setVisible(true);
             return true;
         }else{
+            logger.info("A jatekos teruletet nyitott!");
             floodFill(_row,_col);
             return false;
             
@@ -171,7 +172,7 @@ public class TableController{
             return false;  
         }
     }
-    
+     
     private void floodFill(int _row, int _col){
         if(_row>=0 && _row<=19 && _col>=0 && _col<=19){    
             if(m_imageViews.get(_row).get(_col).getImage().equals(m_imageWhite) &&
@@ -186,6 +187,7 @@ public class TableController{
                 floodFill(_row-1,_col+1);
                 floodFill(_row+1,_col+1);
             }
+            
             m_imageViews.get(_row).get(_col).setVisible(true);
         }
     }

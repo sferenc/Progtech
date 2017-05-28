@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 public class MainApp extends Application {
     
-    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(MainApp.class);
     
     public static String userName = "Annonymous";
     public static int bombs = 25;

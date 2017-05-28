@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 public class HighScoreController implements Initializable {
 
-    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(HighScoreController.class);
     private final ToggleGroup group = new ToggleGroup();
     private final HighScoreModel hsm = new HighScoreModel();
 

@@ -22,7 +22,7 @@ import org.slf4j.Logger;
 
 public class GameController implements Initializable {
 
-    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(GameController.class);
 
     private TableController TC;
     private int NumberOfBombs;
@@ -122,7 +122,6 @@ public class GameController implements Initializable {
         int grCol = (int) ((event.getSceneY() - grPane.getLayoutY() - grPane.getPadding().getTop()) / 20);
             
         if(event.isPrimaryButtonDown()){
-            logger.info("A jatekos teruletet nyitott");
             if(TC.isBomb(grRow,grCol)){
                 logger.info("Jatek Vege!");
                 gameOver();

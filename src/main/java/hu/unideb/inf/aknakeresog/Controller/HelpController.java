@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  */
 public class HelpController implements Initializable {
 
-    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(HelpController.class);
     
     @FXML
     private Label lbDescription;

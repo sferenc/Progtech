@@ -1,13 +1,21 @@
 package hu.unideb.inf.aknakeresog.Dao;
 
-import hu.unideb.inf.aknakeresog.Controller.MainController;
 import hu.unideb.inf.aknakeresog.Model.Player;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -32,7 +40,7 @@ public class Dom {
     /**
      * A logolásért felelős adattag.
      */
-    private static Logger logger = (Logger) LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(Dom.class);
 
     /**
      * Az xml feldolgozásáért felelős adattag.
@@ -43,11 +51,6 @@ public class Dom {
      * Az xml feldolgozásáért felelős adattag.
      */
     private DocumentBuilder dBuilder;
-    
-    /**
-     * Az xml fájl.
-     */
-    private File highScoreFile;
     
     /**
      * Az xml feldolgozásáért felelős adattag.
@@ -70,20 +73,12 @@ public class Dom {
      */
     public Dom(){
         statics = new ArrayList<>();
-        bestTen = new ArrayList<>();
-        
-        highScoreFile = new File("c:/Users/Fricy/Documents/NetBeansProjects/Aknakeresog/src/main/resources/highscore/HS.xml");
-//        highScoreFile = new File(getClass().getResourceAsStream("/highscore/HS.xml"));
-
+        bestTen = new ArrayList<>();    
         try {
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
-            
-            if(!highScoreFile.exists()){
-                DoCreateFile();
-            }
-            
-            doc = dBuilder.parse(getClass().getResourceAsStream("/highscore/HS.xml"));
+                
+            doc = dBuilder.parse(getClass().getResourceAsStream("/highScore/HS.xml"));
         } catch (SAXException ex) {
             logger.error(ex.getMessage());
         } catch (IOException ex) {
@@ -93,39 +88,6 @@ public class Dom {
         }
         
         
-    }
-    
-    /**
-     * Abban az esetben ha az xml fájlt nem éri el a konstruktor, ez a metódus létrehozza azt.
-     */
-    private void DoCreateFile(){
-        
-        doc = dBuilder.newDocument();
-        Element gyokerElem = doc.createElement("highscore"); // létrehoztam de még külön bele kell tenni
-        doc.appendChild(gyokerElem); // hozzáadtam
-        Element easy = doc.createElement("easy");
-        gyokerElem.appendChild(easy);
-        Element medium = doc.createElement("medium");
-        gyokerElem.appendChild(medium);
-        Element hard = doc.createElement("hard");
-        gyokerElem.appendChild(hard);
-
-        try {
-            TransformerFactory tFactory = TransformerFactory.newInstance();
-            Transformer transformer;
-
-            transformer = tFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(highScoreFile);
-
-            transformer.transform(source, result);
-            logger.info("xml fajl letrehozasa!");
-
-        } catch (TransformerConfigurationException ex) {
-            logger.error(ex.getMessage());
-        } catch (TransformerException ex) {
-            logger.error(ex.getMessage());
-        }
     }
     
     /**
@@ -207,9 +169,14 @@ public class Dom {
         try {
             transformer = tFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(highScoreFile);
+            
+            FileOutputStream outputStream = new FileOutputStream(new File("HS.xml"));
+            StreamResult result = new StreamResult(outputStream);
+            
             transformer.transform(source, result);
         } catch (TransformerException ex) {
+            logger.error(ex.getMessage());
+        } catch (FileNotFoundException ex){
             logger.error(ex.getMessage());
         }
     }
