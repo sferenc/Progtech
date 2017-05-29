@@ -2,10 +2,7 @@ package hu.unideb.inf.aknakeresog.Dao;
 
 import hu.unideb.inf.aknakeresog.Model.Player;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
@@ -24,7 +21,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import sun.misc.IOUtils;
 
     /**
      * Az osztály xml fájlból tölt be és xml fájba menti az adatokat. 
@@ -73,7 +69,7 @@ public class Dom {
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
                 
-            doc = dBuilder.parse(getClass().getResourceAsStream("/highScore/HS.xml"));
+            doc = dBuilder.parse(getClass().getResourceAsStream("/highscore/HS.xml"));
         } catch (SAXException ex) {
             logger.error(ex.getMessage());
         } catch (IOException ex) {
@@ -163,7 +159,7 @@ public class Dom {
         try {
             transformer = tFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            URL url = getClass().getResource("/highScore/HS.xml");
+            URL url = getClass().getResource("/highscore/HS.xml");
             File file = new File(url.getPath());
             StreamResult result = new StreamResult(file);
             transformer.transform(source, result);
